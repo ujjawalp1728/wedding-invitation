@@ -3,290 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ujjawal & Uma - Royal Wedding Invitation</title>
+  <title>The Wedding of Ujjawal & Uma</title>
   
-  <!-- Premium Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <!-- Premium Luxury Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --royal-dark: #0b1a1c;
-      --emerald-dark: #122b2e;
-      --card-bg: rgba(20, 48, 52, 0.75);
-      --gold-primary: #f3e5ab;
-      --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-      --gold-border: linear-gradient(135deg, rgba(212,175,55,0.8), rgba(255,239,170,0.3), rgba(212,175,55,0.8));
-      --text-light: #f8f5ee;
-      --wax-red: #801212;
+      --bg-dark: #07090e;
+      --card-glass: rgba(255, 255, 255, 0.03);
+      --gold-light: #f7e7ce;
+      --gold-foil: linear-gradient(135deg, #e6ca65 0%, #a37c27 50%, #e6ca65 100%);
+      --text-main: #f0f0f0;
+      --text-sub: #b3b3b3;
+      --wax-red: #6e0e0e;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--royal-dark);
-      color: var(--text-light);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       font-family: 'Montserrat', sans-serif;
       text-align: center;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* GOLDEN SPARKLES CANVAS */
-    #sparkles-canvas {
+    /* FLOATING AMBIENT GLOW */
+    .glow-bg {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 20%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(230, 202, 101, 0.15) 0%, rgba(0,0,0,0) 70%);
       pointer-events: none;
-      z-index: 10;
+      z-index: 1;
     }
 
     /* WAX SEAL OVERLAY COVER */
     #seal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: radial-gradient(circle, #1a3d42 0%, var(--royal-dark) 100%);
+      background: #05070a;
       z-index: 9999;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: opacity 1s ease, visibility 1s;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
     }
 
-    .seal-box {
-      border: 2px solid rgba(212, 175, 55, 0.4);
-      padding: 40px 25px;
-      border-radius: 100px 100px 20px 20px;
-      background: rgba(11, 26, 28, 0.8);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    .invitation-envelope {
+      border: 1px solid rgba(230, 202, 101, 0.3);
+      padding: 50px 30px;
+      border-radius: 12px;
+      background: rgba(15, 18, 26, 0.8);
+      box-shadow: 0 0 50px rgba(0,0,0,0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .monogram {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 3.5rem;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 5px;
-    }
-
     .seal-btn {
-      width: 110px;
-      height: 110px;
-      background: radial-gradient(circle, #aa1a1a 0%, var(--wax-red) 80%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #8f1717 0%, var(--wax-red) 100%);
       border-radius: 50%;
-      border: 3px solid #d4af37;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(0,0,0,0.6);
-      color: var(--gold-primary);
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      border: 2px solid #e6ca65;
+      box-shadow: 0 0 25px rgba(230, 202, 101, 0.4);
+      color: var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 2px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      margin-top: 25px;
-      animation: pulse 2.5s infinite;
+      margin-top: 30px;
+      animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
-      50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
-      100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(230, 202, 101, 0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(230, 202, 101, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(230, 202, 101, 0.3); }
     }
 
-    /* MAIN CONTENT WRAPPER */
+    /* MAIN CONTENT */
     #main-content {
       opacity: 0;
-      transition: opacity 1.2s ease;
-      max-width: 500px;
+      transition: opacity 1.5s ease;
+      max-width: 480px;
       margin: 0 auto;
       padding-bottom: 90px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* LUX HERO SECTION */
+    /* HERO SECTION */
     .hero {
-      min-height: 95vh;
-      background: linear-gradient(to bottom, rgba(11,26,28,0.3), var(--royal-dark)), url('hero.jpg.JPG') center/cover no-repeat;
+      min-height: 90vh;
+      background: linear-gradient(to bottom, rgba(7,9,14,0.2), var(--bg-dark)), url('hero.jpg.JPG') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px 20px;
-      position: relative;
     }
 
-    .royal-heading {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      color: var(--gold-primary);
-      margin-bottom: 10px;
+    .monogram-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 5px;
+      color: var(--gold-light);
+      margin-bottom: 15px;
       text-transform: uppercase;
     }
 
     .names {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4.8rem;
-      background: var(--gold-gradient);
+      font-family: 'Alex Brush', cursive;
+      font-size: 5rem;
+      background: var(--gold-foil);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1.1;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
     }
 
     .date-badge {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      letter-spacing: 3px;
-      color: var(--text-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      color: var(--text-main);
       margin-top: 20px;
-      border-top: 1px solid rgba(212,175,55,0.5);
-      border-bottom: 1px solid rgba(212,175,55,0.5);
-      padding: 8px 0;
-      display: inline-block;
     }
 
-    .hashtag {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      color: var(--gold-primary);
-      margin-top: 12px;
-    }
+    /* LUX CARDS */
+    .section { padding: 30px 20px; }
 
-    /* CARDS & CONTAINERS */
-    .section { padding: 35px 20px; }
-
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
+    .glass-card {
+      background: var(--card-glass);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(230, 202, 101, 0.25);
       border-radius: 20px;
       padding: 25px 20px;
-      margin: 25px 0;
-      position: relative;
-      border: 1px solid transparent;
-      background-clip: padding-box;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -1px; bottom: -1px; left: -1px; right: -1px;
-      background: var(--gold-border);
-      border-radius: 20px;
-      z-index: -1;
+      margin: 20px 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
     .profile-img {
       width: 100%;
-      height: 320px;
+      height: 340px;
       object-fit: cover;
       border-radius: 12px;
-      border: 1px solid rgba(212,175,55,0.4);
+      border: 1px solid rgba(230, 202, 101, 0.3);
     }
 
-    .message {
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text-light);
+    /* TIMELINE DESIGN FOR EVENTS */
+    .timeline {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .timeline-event {
+      background: rgba(255,255,255,0.02);
+      border-left: 2px solid #e6ca65;
+      padding: 20px;
+      text-align: left;
+      margin-bottom: 20px;
+      border-radius: 0 15px 15px 0;
+    }
+
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    .timeline-time {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-top: 5px;
     }
 
     /* COUNTDOWN TIMER */
-    .countdown-grid {
+    .countdown-flex {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin-top: 15px;
     }
 
-    .countdown-box {
-      background: rgba(11,26,28,0.8);
-      border: 1px solid rgba(212,175,55,0.5);
-      border-radius: 12px;
-      padding: 12px;
+    .count-item {
       width: 22%;
+      background: rgba(230, 202, 101, 0.05);
+      border: 1px solid rgba(230, 202, 101, 0.2);
+      border-radius: 10px;
+      padding: 10px 0;
     }
 
-    .num {
-      font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
     }
 
-    .label {
-      font-size: 0.65rem;
+    .count-label {
+      font-size: 0.6rem;
       letter-spacing: 1px;
-      color: var(--text-light);
-      margin-top: 4px;
+      color: var(--text-sub);
     }
 
     /* BUTTONS */
-    .btn-gold {
+    .btn-lux {
       display: inline-block;
-      padding: 12px 28px;
-      background: var(--gold-gradient);
-      color: #0b1a1c;
+      padding: 10px 22px;
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid #e6ca65;
       text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-      border-radius: 25px;
-      margin-top: 18px;
-      box-shadow: 0 5px 15px rgba(212,175,55,0.3);
-      transition: transform 0.2s;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      border-radius: 30px;
+      margin-top: 15px;
+      transition: all 0.3s ease;
     }
 
-    .btn-gold:active { transform: scale(0.95); }
+    .btn-lux:hover {
+      background: var(--gold-foil);
+      color: #000;
+    }
 
-    /* FLOATING CONTROLS */
+    /* FLOATING MUSIC CONTROLS */
     .floating-btn {
       position: fixed;
-      width: 50px;
-      height: 50px;
-      background: rgba(18,43,46,0.9);
-      border: 1px solid var(--gold-primary);
-      color: var(--gold-primary);
+      width: 45px;
+      height: 45px;
+      background: rgba(7, 9, 14, 0.8);
+      border: 1px solid #e6ca65;
+      color: var(--gold-light);
       border-radius: 50%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       z-index: 1000;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
-    .music-btn { bottom: 25px; left: 20px; }
-    .scroll-btn { bottom: 25px; right: 20px; text-decoration: none; }
+    .music-btn { bottom: 20px; left: 20px; }
+    .scroll-btn { bottom: 20px; right: 20px; text-decoration: none; }
   </style>
 </head>
 <body id="top">
 
-  <!-- SPARKLES CANVAS -->
-  <canvas id="sparkles-canvas"></canvas>
+  <div class="glow-bg"></div>
 
   <!-- BACKGROUND AUDIO -->
   <audio id="bg-music" loop>
     <source src="music.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ROYAL WAX SEAL COVER -->
+  <!-- WAX SEAL COVER OVERLAY -->
   <div id="seal-overlay">
-    <div class="seal-box">
-      <div style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px; color: var(--gold-primary);">THE WEDDING OF</div>
-      <div class="monogram">U & U</div>
-      <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px;">FEBRUARY 16, 2027</div>
+    <div class="invitation-envelope">
+      <div style="font-family: 'Cormorant Garamond', serif; letter-spacing: 3px; color: var(--gold-light); font-size: 0.85rem;">ROYAL INVITATION</div>
+      <div style="font-family: 'Alex Brush', cursive; font-size: 3.8rem; background: var(--gold-foil); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0;">U & U</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-sub);">FEBRUARY 16, 2027</div>
       <div class="seal-btn" onclick="openInvitation()">OPEN</div>
     </div>
   </div>
@@ -296,91 +283,93 @@
     
     <!-- 1. Hero Section -->
     <div class="hero">
-      <div class="royal-heading">TOGETHER WITH THEIR FAMILIES</div>
+      <div class="monogram-badge">Solitary Union</div>
       <div class="names">Ujjawal<br>&<br>Uma</div>
-      <div class="date-badge">16 . 02 . 2027</div>
-      <div class="hashtag">#UjjawalWedsUma</div>
+      <div class="date-badge">16 FEBRUARY 2027</div>
+      <p style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-light); margin-top: 10px;">#UjjawalWedsUma</p>
     </div>
 
-    <!-- 2. Royal Invitation Quote -->
+    <!-- 2. Message -->
     <div class="section">
-      <p class="message" style="font-style: italic;">
-        "Love fills the moment, and the moment fills a lifetime. We request the honor of your presence as we pledge our love before God and family."
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.8; color: var(--text-main);">
+        "With grace in our hearts and love in our souls, we invite you to celebrate the beginning of our forever."
       </p>
     </div>
 
-    <!-- 3. Groom & Bride Cards -->
+    <!-- 3. Groom & Bride Section -->
     <div class="section">
       <!-- Groom Card -->
-      <div class="card">
+      <div class="glass-card">
         <img src="groom.jpg.JPG" class="profile-img" alt="Ujjawal Patidar">
-        <h2 style="font-family: 'Cinzel', serif; margin-top: 15px; color: var(--gold-primary);">Ujjawal Patidar</h2>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">Son of Vinod Patidar</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; margin-top: 15px; color: var(--gold-light); font-size: 1.8rem;">Ujjawal Patidar</h2>
+        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 2px;">Son of Vinod Patidar</p>
       </div>
 
-      <div style="font-family: 'Pinyon Script', cursive; font-size: 3.5rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0;">&</div>
+      <div style="font-family: 'Alex Brush', cursive; font-size: 3rem; background: var(--gold-foil); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 15px 0;">&</div>
 
       <!-- Bride Card -->
-      <div class="card">
+      <div class="glass-card">
         <img src="bride.jpg.JPG" class="profile-img" alt="Uma Patidar">
-        <h2 style="font-family: 'Cinzel', serif; margin-top: 15px; color: var(--gold-primary);">Uma Patidar</h2>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">Daughter of Anter Patidar</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; margin-top: 15px; color: var(--gold-light); font-size: 1.8rem;">Uma Patidar</h2>
+        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 2px;">Daughter of Anter Patidar</p>
       </div>
     </div>
 
-    <!-- 4. Featured Couple Photo -->
+    <!-- 4. Featured Portrait -->
     <div class="section">
-      <div class="card">
-        <img src="couple1.jpg.JPG" class="profile-img" alt="Ujjawal and Uma">
-        <p class="message" style="margin-top: 18px;">
-          "Two souls with but a single thought, two hearts that beat as one."
+      <div class="glass-card">
+        <img src="couple1.jpg.JPG" class="profile-img" alt="Ujjawal & Uma">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; margin-top: 15px; color: var(--text-main);">
+          "Two lives, two hearts, joined together in friendship, united forever in love."
         </p>
       </div>
     </div>
 
-    <!-- 5. Countdown Timer -->
+    <!-- 5. Countdown Section -->
     <div class="section">
-      <div class="royal-heading">COUNTDOWN TO THE BIG DAY</div>
-      <div class="countdown-grid" style="margin-top: 20px;">
-        <div class="countdown-box"><div class="num" id="d">--</div><div class="label">DAYS</div></div>
-        <div class="countdown-box"><div class="num" id="h">--</div><div class="label">HRS</div></div>
-        <div class="countdown-box"><div class="num" id="m">--</div><div class="label">MINS</div></div>
-        <div class="countdown-box"><div class="num" id="s">--</div><div class="label">SECS</div></div>
+      <div class="monogram-badge">THE COUNTDOWN</div>
+      <div class="countdown-flex">
+        <div class="count-item"><div class="count-num" id="d">--</div><div class="count-label">DAYS</div></div>
+        <div class="count-item"><div class="count-num" id="h">--</div><div class="count-label">HOURS</div></div>
+        <div class="count-item"><div class="count-num" id="m">--</div><div class="count-label">MINS</div></div>
+        <div class="count-item"><div class="count-num" id="s">--</div><div class="count-label">SECS</div></div>
       </div>
     </div>
 
-    <!-- 6. Events Section -->
+    <!-- 6. Event Timeline -->
     <div class="section">
-      <div class="royal-heading" style="font-size: 1.1rem; margin-bottom: 10px;">CELEBRATION EVENTS</div>
+      <div class="monogram-badge" style="margin-bottom: 20px;">PROGRAM & EVENTS</div>
       
-      <!-- Haldi -->
-      <div class="card">
-        <h3 style="font-family: 'Cinzel', serif; color: var(--gold-primary); letter-spacing: 2px;">HALDI CEREMONY</h3>
-        <p style="margin-top: 8px; font-weight: 500;">14th February 2027 | 07:00 PM</p>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">@ Sindoda</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-gold">LOCATION MAP</a>
-      </div>
+      <div class="timeline">
+        <!-- Haldi -->
+        <div class="timeline-event">
+          <div class="timeline-title">Haldi Ceremony</div>
+          <div class="timeline-time">14th February 2027 | 07:00 PM</div>
+          <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">@ Sindoda</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-lux">GET DIRECTIONS</a>
+        </div>
 
-      <!-- Wedding -->
-      <div class="card">
-        <h3 style="font-family: 'Cinzel', serif; color: var(--gold-primary); letter-spacing: 2px;">THE WEDDING</h3>
-        <p style="margin-top: 8px; font-weight: 500;">16th February 2027 | 04:00 PM</p>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">@ Sindoda</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-gold">LOCATION MAP</a>
+        <!-- Wedding -->
+        <div class="timeline-event">
+          <div class="timeline-title">The Wedding</div>
+          <div class="timeline-time">16th February 2027 | 04:00 PM</div>
+          <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">@ Sindoda</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-lux">GET DIRECTIONS</a>
+        </div>
       </div>
     </div>
 
     <!-- 7. Footer -->
     <div class="section">
-      <div class="card">
+      <div class="glass-card">
         <img src="couple.jpg.JPG" class="profile-img" alt="Ujjawal and Uma">
-        <p class="message" style="margin-top: 18px;">
-          "Your presence at our wedding is the greatest gift of all. We can't wait to celebrate with you!"
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; margin-top: 15px;">
+          "We look forward to celebrating this unforgettable day with you."
         </p>
       </div>
 
-      <p style="font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 3px; color: var(--gold-primary); margin-top: 30px;">
-        WITH COMPLIMENTS FROM PATIDAR FAMILY
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 3px; color: var(--gold-light); margin-top: 25px;">
+        WITH BEST COMPLIMENTS FROM PATIDAR FAMILY
       </p>
     </div>
 
@@ -397,13 +386,12 @@
       document.getElementById('seal-overlay').style.opacity = '0';
       setTimeout(() => {
         document.getElementById('seal-overlay').style.visibility = 'hidden';
-      }, 1000);
+      }, 1200);
 
       document.getElementById('main-content').style.opacity = '1';
       music.play().catch(e => console.log("Audio block override"));
       
       startCountdown();
-      initSparkles();
     }
 
     function toggleMusic() {
@@ -431,42 +419,6 @@
           document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }
       }, 1000);
-    }
-
-    /* GOLDEN SPARKLES ANIMATION */
-    function initSparkles() {
-      const canvas = document.getElementById('sparkles-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const particles = [];
-      for(let i = 0; i < 40; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 0.5,
-          speedY: Math.random() * 0.8 + 0.2,
-          opacity: Math.random()
-        });
-      }
-
-      function render() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgba(243, 229, 171, 0.7)';
-        
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fill();
-
-          p.y -= p.speedY;
-          if (p.y < 0) p.y = canvas.height;
-        });
-
-        requestAnimationFrame(render);
-      }
-      render();
     }
   </script>
 </body>
