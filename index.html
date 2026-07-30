@@ -3,248 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Wedding of Ujjawal & Uma</title>
+  <title>Wedding Invitation - Ujjawal & Uma</title>
   
-  <!-- Premium Luxury Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Premium Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=MonteCarlo&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-dark: #07090e;
-      --card-glass: rgba(255, 255, 255, 0.03);
-      --gold-light: #f7e7ce;
-      --gold-foil: linear-gradient(135deg, #e6ca65 0%, #a37c27 50%, #e6ca65 100%);
-      --text-main: #f0f0f0;
-      --text-sub: #b3b3b3;
-      --wax-red: #6e0e0e;
+      --bg-cream: #fdfbf7;
+      --card-bg: #ffffff;
+      --gold-main: #c5a059;
+      --gold-dark: #9e7a33;
+      --text-dark: #2c2825;
+      --text-muted: #78726d;
+      --rose-accent: #e8d0cb;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       text-align: center;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* FLOATING AMBIENT GLOW */
-    .glow-bg {
-      position: fixed;
-      top: 20%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(230, 202, 101, 0.15) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* WAX SEAL OVERLAY COVER */
+    /* ROYAL ENVELOPE OPENING OVERLAY */
     #seal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #05070a;
+      background: var(--bg-cream);
       z-index: 9999;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+      padding: 20px;
+      transition: all 1s ease-in-out;
     }
 
-    .invitation-envelope {
-      border: 1px solid rgba(230, 202, 101, 0.3);
-      padding: 50px 30px;
-      border-radius: 12px;
-      background: rgba(15, 18, 26, 0.8);
-      box-shadow: 0 0 50px rgba(0,0,0,0.9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .envelope-box {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-main);
+      border-radius: 16px;
+      padding: 40px 25px;
+      box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
+      max-width: 380px;
+      width: 100%;
+      position: relative;
     }
 
-    .seal-btn {
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, #8f1717 0%, var(--wax-red) 100%);
-      border-radius: 50%;
-      border: 2px solid #e6ca65;
-      box-shadow: 0 0 25px rgba(230, 202, 101, 0.4);
-      color: var(--gold-light);
-      font-family: 'Cormorant Garamond', serif;
+    .envelope-box::before {
+      content: '';
+      position: absolute;
+      top: 8px; bottom: 8px; left: 8px; right: 8px;
+      border: 1px dashed var(--gold-main);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .monogram-script {
+      font-family: 'MonteCarlo', cursive;
+      font-size: 4rem;
+      color: var(--gold-main);
+      line-height: 1;
+    }
+
+    .open-btn {
+      background: linear-gradient(135deg, var(--gold-main), var(--gold-dark));
+      color: #fff;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 30px;
+      font-family: 'Marcellus', serif;
       font-size: 0.9rem;
-      font-weight: 600;
       letter-spacing: 2px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       cursor: pointer;
-      margin-top: 30px;
-      animation: pulse 2s infinite;
+      margin-top: 25px;
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+      transition: transform 0.2s;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 15px rgba(230, 202, 101, 0.3); }
-      50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(230, 202, 101, 0.6); }
-      100% { transform: scale(1); box-shadow: 0 0 15px rgba(230, 202, 101, 0.3); }
-    }
+    .open-btn:active { transform: scale(0.95); }
 
     /* MAIN CONTENT */
     #main-content {
       opacity: 0;
-      transition: opacity 1.5s ease;
+      transition: opacity 1.2s ease;
       max-width: 480px;
       margin: 0 auto;
       padding-bottom: 90px;
-      position: relative;
-      z-index: 2;
     }
 
-    /* HERO SECTION */
+    /* HERO COVER */
     .hero {
       min-height: 90vh;
-      background: linear-gradient(to bottom, rgba(7,9,14,0.2), var(--bg-dark)), url('hero.jpg.JPG') center/cover no-repeat;
+      background: linear-gradient(to bottom, rgba(253,251,247,0.1), var(--bg-cream)), url('hero.jpg.JPG') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px 20px;
     }
 
-    .monogram-badge {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 5px;
-      color: var(--gold-light);
-      margin-bottom: 15px;
+    .heading-sub {
+      font-family: 'Marcellus', serif;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      color: var(--gold-dark);
       text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .names {
-      font-family: 'Alex Brush', cursive;
-      font-size: 5rem;
-      background: var(--gold-foil);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .couple-names {
+      font-family: 'MonteCarlo', cursive;
+      font-size: 4.5rem;
+      color: var(--gold-dark);
       line-height: 1.1;
     }
 
-    .date-badge {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      letter-spacing: 4px;
-      color: var(--text-main);
+    .date-pill {
+      display: inline-block;
+      background: var(--card-bg);
+      border: 1px solid var(--gold-main);
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-family: 'Marcellus', serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      color: var(--text-dark);
       margin-top: 20px;
     }
 
-    /* LUX CARDS */
+    /* CARDS & CONTAINERS */
     .section { padding: 30px 20px; }
 
-    .glass-card {
-      background: var(--card-glass);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(230, 202, 101, 0.25);
-      border-radius: 20px;
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
       padding: 25px 20px;
       margin: 20px 0;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
 
     .profile-img {
       width: 100%;
-      height: 340px;
+      height: 330px;
       object-fit: cover;
       border-radius: 12px;
-      border: 1px solid rgba(230, 202, 101, 0.3);
-    }
-
-    /* TIMELINE DESIGN FOR EVENTS */
-    .timeline {
-      position: relative;
-      margin-top: 20px;
-    }
-
-    .timeline-event {
-      background: rgba(255,255,255,0.02);
-      border-left: 2px solid #e6ca65;
-      padding: 20px;
-      text-align: left;
-      margin-bottom: 20px;
-      border-radius: 0 15px 15px 0;
-    }
-
-    .timeline-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      color: var(--gold-light);
-    }
-
-    .timeline-time {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-top: 5px;
+      border: 3px solid var(--bg-cream);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
     /* COUNTDOWN TIMER */
-    .countdown-flex {
+    .timer-grid {
       display: flex;
       justify-content: space-between;
       margin-top: 15px;
     }
 
-    .count-item {
+    .timer-box {
       width: 22%;
-      background: rgba(230, 202, 101, 0.05);
-      border: 1px solid rgba(230, 202, 101, 0.2);
+      background: var(--bg-cream);
+      border: 1px solid rgba(197, 160, 89, 0.3);
       border-radius: 10px;
       padding: 10px 0;
     }
 
-    .count-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--gold-light);
+    .timer-num {
+      font-family: 'Marcellus', serif;
+      font-size: 1.6rem;
+      color: var(--gold-dark);
     }
 
-    .count-label {
-      font-size: 0.6rem;
+    .timer-label {
+      font-size: 0.65rem;
       letter-spacing: 1px;
-      color: var(--text-sub);
+      color: var(--text-muted);
     }
 
-    /* BUTTONS */
-    .btn-lux {
+    /* EVENT CARD */
+    .event-card {
+      background: var(--card-bg);
+      border-left: 4px solid var(--gold-main);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    }
+
+    .event-title {
+      font-family: 'Marcellus', serif;
+      font-size: 1.2rem;
+      color: var(--gold-dark);
+    }
+
+    .btn-maps {
       display: inline-block;
-      padding: 10px 22px;
-      background: transparent;
-      color: var(--gold-light);
-      border: 1px solid #e6ca65;
+      padding: 8px 18px;
+      background: var(--bg-cream);
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-main);
+      border-radius: 20px;
       text-decoration: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      border-radius: 30px;
-      margin-top: 15px;
-      transition: all 0.3s ease;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 12px;
     }
 
-    .btn-lux:hover {
-      background: var(--gold-foil);
-      color: #000;
-    }
-
-    /* FLOATING MUSIC CONTROLS */
+    /* FLOATING BUTTONS */
     .floating-btn {
       position: fixed;
       width: 45px;
       height: 45px;
-      background: rgba(7, 9, 14, 0.8);
-      border: 1px solid #e6ca65;
-      color: var(--gold-light);
+      background: var(--card-bg);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-dark);
       border-radius: 50%;
       font-size: 1.1rem;
       cursor: pointer;
@@ -252,7 +230,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .music-btn { bottom: 20px; left: 20px; }
@@ -261,20 +239,18 @@
 </head>
 <body id="top">
 
-  <div class="glow-bg"></div>
-
   <!-- BACKGROUND AUDIO -->
   <audio id="bg-music" loop>
     <source src="music.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- WAX SEAL COVER OVERLAY -->
+  <!-- WAX SEAL / ENVELOPE OVERLAY -->
   <div id="seal-overlay">
-    <div class="invitation-envelope">
-      <div style="font-family: 'Cormorant Garamond', serif; letter-spacing: 3px; color: var(--gold-light); font-size: 0.85rem;">ROYAL INVITATION</div>
-      <div style="font-family: 'Alex Brush', cursive; font-size: 3.8rem; background: var(--gold-foil); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0;">U & U</div>
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-sub);">FEBRUARY 16, 2027</div>
-      <div class="seal-btn" onclick="openInvitation()">OPEN</div>
+    <div class="envelope-box">
+      <div class="heading-sub">Wedding Invitation</div>
+      <div class="monogram-script">U & U</div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">February 16, 2027</p>
+      <button class="open-btn" onclick="openInvitation()">OPEN INVITATION</button>
     </div>
   </div>
 
@@ -283,92 +259,90 @@
     
     <!-- 1. Hero Section -->
     <div class="hero">
-      <div class="monogram-badge">Solitary Union</div>
-      <div class="names">Ujjawal<br>&<br>Uma</div>
-      <div class="date-badge">16 FEBRUARY 2027</div>
-      <p style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-light); margin-top: 10px;">#UjjawalWedsUma</p>
+      <div class="heading-sub">Together With Families</div>
+      <div class="couple-names">Ujjawal<br>&<br>Uma</div>
+      <div><span class="date-badge">16 FEBRUARY 2027</span></div>
+      <p style="font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-dark); margin-top: 12px;">#UjjawalWedsUma</p>
     </div>
 
     <!-- 2. Message -->
     <div class="section">
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.8; color: var(--text-main);">
-        "With grace in our hearts and love in our souls, we invite you to celebrate the beginning of our forever."
+      <p style="font-family: 'Marcellus', serif; font-size: 1rem; line-height: 1.8; color: var(--text-dark); font-style: italic;">
+        "Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day."
       </p>
     </div>
 
-    <!-- 3. Groom & Bride Section -->
+    <!-- 3. Groom & Bride Cards -->
     <div class="section">
       <!-- Groom Card -->
-      <div class="glass-card">
+      <div class="card">
         <img src="groom.jpg.JPG" class="profile-img" alt="Ujjawal Patidar">
-        <h2 style="font-family: 'Cormorant Garamond', serif; margin-top: 15px; color: var(--gold-light); font-size: 1.8rem;">Ujjawal Patidar</h2>
-        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 2px;">Son of Vinod Patidar</p>
+        <h3 style="font-family: 'Marcellus', serif; margin-top: 15px; color: var(--gold-dark); font-size: 1.4rem;">Ujjawal Patidar</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Son of Vinod Patidar</p>
       </div>
 
-      <div style="font-family: 'Alex Brush', cursive; font-size: 3rem; background: var(--gold-foil); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 15px 0;">&</div>
+      <div style="font-family: 'MonteCarlo', cursive; font-size: 3.5rem; color: var(--gold-main); margin: 10px 0;">&</div>
 
       <!-- Bride Card -->
-      <div class="glass-card">
+      <div class="card">
         <img src="bride.jpg.JPG" class="profile-img" alt="Uma Patidar">
-        <h2 style="font-family: 'Cormorant Garamond', serif; margin-top: 15px; color: var(--gold-light); font-size: 1.8rem;">Uma Patidar</h2>
-        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 2px;">Daughter of Anter Patidar</p>
+        <h3 style="font-family: 'Marcellus', serif; margin-top: 15px; color: var(--gold-dark); font-size: 1.4rem;">Uma Patidar</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Daughter of Anter Patidar</p>
       </div>
     </div>
 
-    <!-- 4. Featured Portrait -->
+    <!-- 4. Featured Photo Card -->
     <div class="section">
-      <div class="glass-card">
+      <div class="card">
         <img src="couple1.jpg.JPG" class="profile-img" alt="Ujjawal & Uma">
-        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; margin-top: 15px; color: var(--text-main);">
-          "Two lives, two hearts, joined together in friendship, united forever in love."
+        <p style="font-family: 'Marcellus', serif; font-size: 0.95rem; margin-top: 15px; color: var(--text-dark);">
+          "Joined together in love and faith."
         </p>
       </div>
     </div>
 
     <!-- 5. Countdown Section -->
     <div class="section">
-      <div class="monogram-badge">THE COUNTDOWN</div>
-      <div class="countdown-flex">
-        <div class="count-item"><div class="count-num" id="d">--</div><div class="count-label">DAYS</div></div>
-        <div class="count-item"><div class="count-num" id="h">--</div><div class="count-label">HOURS</div></div>
-        <div class="count-item"><div class="count-num" id="m">--</div><div class="count-label">MINS</div></div>
-        <div class="count-item"><div class="count-num" id="s">--</div><div class="count-label">SECS</div></div>
+      <div class="heading-sub">The Celebration Begins In</div>
+      <div class="timer-grid">
+        <div class="timer-box"><div class="timer-num" id="d">--</div><div class="timer-label">DAYS</div></div>
+        <div class="timer-box"><div class="timer-num" id="h">--</div><div class="timer-label">HOURS</div></div>
+        <div class="timer-box"><div class="timer-num" id="m">--</div><div class="timer-label">MINS</div></div>
+        <div class="timer-box"><div class="timer-num" id="s">--</div><div class="timer-label">SECS</div></div>
       </div>
     </div>
 
-    <!-- 6. Event Timeline -->
+    <!-- 6. Events Section -->
     <div class="section">
-      <div class="monogram-badge" style="margin-bottom: 20px;">PROGRAM & EVENTS</div>
+      <div class="heading-sub" style="margin-bottom: 15px;">Wedding Schedule</div>
       
-      <div class="timeline">
-        <!-- Haldi -->
-        <div class="timeline-event">
-          <div class="timeline-title">Haldi Ceremony</div>
-          <div class="timeline-time">14th February 2027 | 07:00 PM</div>
-          <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">@ Sindoda</p>
-          <a href="https://maps.google.com" target="_blank" class="btn-lux">GET DIRECTIONS</a>
-        </div>
+      <!-- Haldi -->
+      <div class="event-card">
+        <div class="event-title">Haldi Ceremony</div>
+        <p style="font-size: 0.85rem; margin-top: 5px; font-weight: 500;">14th February 2027 | 07:00 PM</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 3px;">@ Sindoda</p>
+        <a href="https://maps.google.com" target="_blank" class="btn-maps">VIEW MAP</a>
+      </div>
 
-        <!-- Wedding -->
-        <div class="timeline-event">
-          <div class="timeline-title">The Wedding</div>
-          <div class="timeline-time">16th February 2027 | 04:00 PM</div>
-          <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">@ Sindoda</p>
-          <a href="https://maps.google.com" target="_blank" class="btn-lux">GET DIRECTIONS</a>
-        </div>
+      <!-- Wedding -->
+      <div class="event-card">
+        <div class="event-title">The Wedding</div>
+        <p style="font-size: 0.85rem; margin-top: 5px; font-weight: 500;">16th February 2027 | 04:00 PM</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 3px;">@ Sindoda</p>
+        <a href="https://maps.google.com" target="_blank" class="btn-maps">VIEW MAP</a>
       </div>
     </div>
 
     <!-- 7. Footer -->
     <div class="section">
-      <div class="glass-card">
+      <div class="card">
         <img src="couple.jpg.JPG" class="profile-img" alt="Ujjawal and Uma">
-        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; margin-top: 15px;">
-          "We look forward to celebrating this unforgettable day with you."
+        <p style="font-family: 'Marcellus', serif; font-size: 0.95rem; margin-top: 15px; font-style: italic;">
+          "Your blessings and presence are our greatest gifts."
         </p>
       </div>
 
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 3px; color: var(--gold-light); margin-top: 25px;">
+      <p style="font-family: 'Marcellus', serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-dark); margin-top: 25px;">
         WITH BEST COMPLIMENTS FROM PATIDAR FAMILY
       </p>
     </div>
@@ -386,7 +360,7 @@
       document.getElementById('seal-overlay').style.opacity = '0';
       setTimeout(() => {
         document.getElementById('seal-overlay').style.visibility = 'hidden';
-      }, 1200);
+      }, 1000);
 
       document.getElementById('main-content').style.opacity = '1';
       music.play().catch(e => console.log("Audio block override"));
