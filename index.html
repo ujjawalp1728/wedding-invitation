@@ -3,393 +3,862 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ujjawal & Uma — 3D Wedding Invitation</title>
+  <title>शादी का घर • Ujjawal & Uma</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Montserrat:wght@400;500;600&family=Rozha+One&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-cream: #fbf6f0;
-      --gold-dark: #b8860b;
-      --gold-foil: linear-gradient(135deg, #d4af37 0%, #aa7a1e 50%, #f3e5ab 100%);
-      --text-dark: #2a2118;
-      --glass-card: rgba(255, 255, 255, 0.88);
-      --glass-border: rgba(184, 134, 11, 0.3);
+      --sandstone: #f3dfc8;
+      --haveli-pink: #e2a596;
+      --warm-wall: #f9ebd9;
+      --maroon: #7d1919;
+      --gold: #c9932c;
+      --marigold-orange: #f57c00;
+      --marigold-yellow: #ffb300;
+      --wood-dark: #4a2511;
+      --wood-mid: #6b381b;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body { background-color: var(--bg-cream); color: var(--text-dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-
-    /* FLOATING FIREWORKS & SPARKLES CANVAS */
-    #fx-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99; }
-
-    /* 1. ANIMATED BANNER ROLLER UNVEIL (VIDEO INTRO) */
-    #banner-curtain {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: radial-gradient(circle, #fff7ee 0%, #eddcd0 100%);
-      z-index: 9999; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    html { scroll-behavior: smooth; }
+    body {
+      background: #2b140c;
+      color: #3a1f14;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
     }
 
-    .banner-scroll {
-      width: 85%; max-width: 340px; background: #fff;
-      border: 2px solid var(--gold-dark); border-radius: 12px;
-      padding: 35px 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      position: relative; animation: bannerDrop 1.2s ease-out;
+    /* PETALS CANVAS */
+    #petal-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 999;
     }
 
-    @keyframes bannerDrop {
-      0% { transform: scaleY(0.1); opacity: 0; }
-      100% { transform: scaleY(1); opacity: 1; }
+    /* MOBILE APP CONTAINER */
+    .story-wrapper {
+      max-width: 460px;
+      margin: 0 auto;
+      background: var(--warm-wall);
+      box-shadow: 0 0 50px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
     }
 
-    .banner-names {
-      font-family: 'Alex Brush', cursive; font-size: 3.5rem;
-      color: #b82d2d; line-height: 1.1; margin: 15px 0;
+    /* ================= SCENE 1: HAVELI EXTERIOR & OPENING DOORS ================= */
+    .haveli-scene {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #f7e4cd 0%, #efd2b5 50%, #e4be9c 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 24px;
+      border-bottom: 6px solid var(--gold);
     }
 
-    .tap-btn {
-      background: linear-gradient(135deg, #b82d2d, #800020);
-      color: #fff; border: none; padding: 12px 30px;
-      border-radius: 25px; font-family: 'Cinzel', serif;
-      font-size: 0.85rem; letter-spacing: 2px; cursor: pointer;
-      box-shadow: 0 5px 15px rgba(128,0,32,0.3); margin-top: 15px;
+    .shri-ganesh {
+      font-family: 'Rozha One', serif;
+      font-size: 0.95rem;
+      color: var(--maroon);
+      letter-spacing: 1px;
     }
 
-    /* 2. MAIN STORY VIEW */
-    #main-story { opacity: 0; transition: opacity 1s ease; max-width: 480px; margin: 0 auto; padding-bottom: 90px; }
-
-    /* 3D PALACE SCENE */
-    .palace-stage {
-      min-height: 92vh; position: relative; display: flex;
-      flex-direction: column; justify-content: flex-end;
-      padding: 30px 20px;
-      background: linear-gradient(to bottom, rgba(251,246,240,0.1), var(--bg-cream)), url('hero.jpg.JPG') center/cover no-repeat;
+    .invited-script {
+      font-family: 'Alex Brush', cursive;
+      font-size: 3.1rem;
+      color: var(--maroon);
+      margin-top: 2px;
+      line-height: 1;
     }
 
-    .monogram-badge {
-      font-family: 'Alex Brush', cursive; font-size: 4rem;
-      background: var(--gold-foil); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; text-align: center;
-      line-height: 1; margin-bottom: 10px;
+    /* HAVELI JHAROKHA ARCH */
+    .haveli-facade {
+      width: 92%;
+      margin-top: 14px;
+      background: var(--haveli-pink);
+      border: 3px solid #b57363;
+      border-radius: 18px 18px 0 0;
+      padding: 14px 12px 0 12px;
+      box-shadow: inset 0 0 25px rgba(125,25,25,0.18);
+      position: relative;
     }
 
-    .couple-title { font-family: 'Cinzel', serif; font-size: 1.8rem; letter-spacing: 2px; font-weight: 700; color: var(--gold-dark); }
-
-    /* SECTION CONTAINERS */
-    .section-box { padding: 30px 20px; text-align: center; }
-    .section-tag { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 10px; }
-
-    .lux-card {
-      background: var(--glass-card); backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border);
-      border-radius: 20px; padding: 22px 18px; margin: 20px 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    /* SHAADI KA GHAR WOODEN BOARD */
+    .shaadi-board {
+      background: linear-gradient(135deg, #5b2c13, #3d1b09);
+      border: 2.5px solid #f6c96b;
+      border-radius: 8px;
+      padding: 8px 22px;
+      display: inline-block;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 5;
     }
 
-    .profile-frame { width: 100%; height: 320px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(184,134,11,0.3); }
+    .shaadi-board span {
+      font-family: 'Rozha One', serif;
+      font-size: 1.7rem;
+      color: #ffe8a3;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
 
-    /* SCRATCH TO REVEAL CANVAS */
-    .scratch-container {
-      position: relative; width: 100%; height: 340px;
-      border-radius: 16px; overflow: hidden; margin: 15px 0;
-      border: 2px solid var(--gold-dark);
+    /* MARIGOLD TORAN STRIP */
+    .toran-bar {
+      width: 100%;
+      height: 46px;
+      margin-bottom: -14px;
+      position: relative;
+      z-index: 6;
     }
-    .scratch-under-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-    #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; touch-action: none; cursor: grab; }
 
-    /* HORIZONTAL SWIPE GALLERY */
-    .gallery-carousel {
-      display: flex; overflow-x: auto; gap: 15px;
-      padding: 10px 5px; scroll-snap-type: x mandatory;
-      scrollbar-width: none;
+    /* 3D DOORWAY CONTAINER */
+    .doorway-frame {
+      width: 100%;
+      height: 430px;
+      background: #fff5e8;
+      border: 8px solid #d9b68c;
+      border-bottom: none;
+      border-radius: 130px 130px 0 0;
+      position: relative;
+      perspective: 1200px;
+      overflow: hidden;
+      box-shadow: inset 0 10px 30px rgba(0,0,0,0.25);
     }
-    .gallery-carousel::-webkit-scrollbar { display: none; }
-    .gallery-item {
-      flex: 0 0 85%; scroll-snap-align: center;
-      border-radius: 16px; overflow: hidden; height: 300px;
-      border: 1px solid var(--gold-dark);
+
+    /* INSIDE ROOM (REVEALED WHEN DOORS OPEN) */
+    .room-interior {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 35%, #fff9f0 0%, #f5dec0 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 38px 16px 12px 16px;
+      z-index: 1;
     }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    .ganesh-calendar {
+      position: absolute;
+      top: 22px;
+      right: 16px;
+      width: 54px;
+      background: #fff;
+      border: 1.5px solid var(--gold);
+      border-radius: 4px;
+      padding: 3px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    .ganesh-calendar .cal-icon { font-size: 1.3rem; line-height: 1.1; }
+    .ganesh-calendar .cal-date { font-size: 0.55rem; font-weight: 700; color: var(--maroon); border-top: 1px solid #eee; margin-top: 2px; }
+
+    .wall-names {
+      margin-top: 18px;
+      z-index: 2;
+    }
+    .shubh-vivah {
+      font-family: 'Rozha One', serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+    }
+    .invite-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #5c3a28;
+      margin: 2px 0 6px 0;
+    }
+    .wall-couple {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.6rem;
+      color: var(--maroon);
+      line-height: 1.05;
+    }
+    .wall-parents {
+      font-size: 0.68rem;
+      color: #6d4733;
+      margin-bottom: 4px;
+    }
+    .wall-date-loc {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-top: 8px;
+      letter-spacing: 1.5px;
+      border-top: 1px solid rgba(125,25,25,0.2);
+      border-bottom: 1px solid rgba(125,25,25,0.2);
+      padding: 4px 10px;
+      display: inline-block;
+    }
+
+    /* CONSOLE TABLE + RADIO + DOGGY ILLUSTRATION */
+    .room-bottom-props {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    /* LEFT & RIGHT WOODEN HAVELI DOORS */
+    .haveli-door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--wood-mid) 0%, var(--wood-dark) 100%);
+      border: 2px solid #2b1306;
+      z-index: 4;
+      transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 40px 10px 20px 10px;
+      cursor: pointer;
+    }
+    .door-left {
+      left: 0;
+      transform-origin: left center;
+      border-right: 1.5px solid #d4af37;
+    }
+    .door-right {
+      right: 0;
+      transform-origin: right center;
+      border-left: 1.5px solid #d4af37;
+    }
+
+    .door-panel {
+      width: 75%;
+      height: 26%;
+      border: 2px solid rgba(212,175,55,0.45);
+      border-radius: 6px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .door-panel::after {
+      content: '❖';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(212,175,55,0.55);
+      font-size: 1rem;
+    }
+
+    .door-ring {
+      width: 24px; height: 24px;
+      border: 3px solid #f2c96b;
+      border-radius: 50%;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.6);
+    }
+
+    /* OPEN STATE */
+    .doorway-frame.opened .door-left { transform: rotateY(-115deg); }
+    .doorway-frame.opened .door-right { transform: rotateY(115deg); }
+    .doorway-frame.opened .tap-door-badge { opacity: 0; pointer-events: none; }
+
+    .tap-door-badge {
+      position: absolute;
+      top: 52%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 8;
+      background: linear-gradient(135deg, #b82d2d, #7d1919);
+      color: #ffe8a3;
+      border: 2px solid #f6c96b;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      cursor: pointer;
+      animation: pulseBtn 1.8s infinite;
+      white-space: nowrap;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.07); }
+    }
+
+    /* ================= SCENE 2: BRIDE & GROOM ================= */
+    .section-block {
+      padding: 36px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-heading {
+      font-family: 'Rozha One', serif;
+      font-size: 1.65rem;
+      color: var(--maroon);
+      margin-bottom: 4px;
+    }
+    .section-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .couple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .jharokha-card {
+      background: #fff;
+      border: 2px solid var(--gold);
+      border-radius: 90px 90px 14px 14px;
+      padding: 10px 10px 16px 10px;
+      box-shadow: 0 10px 25px rgba(125,25,25,0.1);
+    }
+
+    .jharokha-card img {
+      width: 100%;
+      height: 195px;
+      object-fit: cover;
+      border-radius: 80px 80px 10px 10px;
+      border: 1.5px solid #ecd2a6;
+    }
+
+    .jharokha-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem;
+      color: var(--maroon);
+      margin-top: 10px;
+    }
+    .jharokha-card p {
+      font-size: 0.72rem;
+      color: #6b4c3b;
+      margin-top: 3px;
+    }
+
+    /* ================= SCENE 3: FABRIC SCROLLS (FUNCTIONS) ================= */
+    .courtyard-section {
+      background: linear-gradient(180deg, #f6e1c8 0%, #edd0ae 100%);
+      padding: 38px 16px;
+      border-top: 4px dashed var(--gold);
+      border-bottom: 4px dashed var(--gold);
+      text-align: center;
+    }
+
+    .scrolls-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .fabric-scroll {
+      background: #fffcf5;
+      border-left: 2px solid #d8be92;
+      border-right: 2px solid #d8be92;
+      padding: 18px 10px 22px 10px;
+      position: relative;
+      box-shadow: 0 12px 24px rgba(74,37,17,0.16);
+      border-radius: 4px;
+    }
+
+    /* WOODEN SCROLL ROD TOP & BOTTOM */
+    .fabric-scroll::before, .fabric-scroll::after {
+      content: '';
+      position: absolute;
+      left: -6px; right: -6px;
+      height: 10px;
+      background: linear-gradient(90deg, #b8860b, #f3d27a, #b8860b);
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    }
+    .fabric-scroll::before { top: -5px; }
+    .fabric-scroll::after { bottom: -5px; }
+
+    .scroll-event-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.2rem;
+      color: var(--maroon);
+      line-height: 1.1;
+    }
+
+    .scroll-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #4a2511;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .scroll-time {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--marigold-orange);
+      margin-top: 4px;
+    }
+
+    .scroll-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #5c3a28;
+      margin-top: 6px;
+    }
+
+    .scroll-flowers {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+    }
+
+    .map-pill {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: var(--maroon);
+      color: #ffe8a3;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ================= SCENE 4: GRAND MANDAP REVEAL ================= */
+    .mandap-section {
+      padding: 38px 20px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, #fffaf2 0%, #f3dec2 100%);
+    }
+
+    .mandap-arch-box {
+      position: relative;
+      border-radius: 170px 170px 18px 18px;
+      border: 4px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(74,37,17,0.22);
+      margin: 18px 0;
+      background: #fff;
+    }
+
+    .mandap-arch-box img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mandap-banner-overlay {
+      background: linear-gradient(180deg, rgba(125,25,25,0.95), rgba(74,37,17,0.98));
+      color: #ffe8a3;
+      padding: 16px 14px;
+    }
 
     /* COUNTDOWN */
-    .timer-flex { display: flex; justify-content: space-between; margin-top: 15px; }
-    .timer-node { width: 22%; background: #fff; border: 1px solid var(--gold-dark); border-radius: 12px; padding: 10px 0; }
-    .timer-num { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold-dark); font-weight: 700; }
-    .timer-sub { font-size: 0.6rem; letter-spacing: 1px; }
-
-    /* EVENT CARDS */
-    .event-pill {
-      background: #fff; border-radius: 16px; border-left: 4px solid var(--gold-dark);
-      padding: 18px; margin: 15px 0; text-align: left;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    .countdown-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 20px 0;
     }
-    .btn-gold {
-      display: inline-block; padding: 8px 20px; background: var(--gold-foil);
-      color: #fff; text-decoration: none; border-radius: 20px;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; margin-top: 10px;
+    .cd-box {
+      flex: 1;
+      background: #fff;
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      padding: 10px 4px;
     }
-
-    /* RSVP POPUP FORM */
-    .input-field {
-      width: 100%; padding: 12px; margin: 8px 0 14px 0;
-      border: 1px solid var(--gold-dark); border-radius: 10px;
-      font-family: inherit; font-size: 0.9rem; outline: none; background: #fff;
+    .cd-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--maroon);
     }
-    .btn-submit {
-      width: 100%; padding: 14px; background: linear-gradient(135deg, #25d366, #128c7e);
-      color: #fff; border: none; border-radius: 25px;
-      font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700;
-      letter-spacing: 1px; cursor: pointer;
+    .cd-lbl {
+      font-size: 0.58rem;
+      letter-spacing: 1px;
+      color: #6b4c3b;
+      font-weight: 600;
     }
 
-    /* FLOATING MUSIC & WHATSAPP BAR */
-    .float-ctrl {
-      position: fixed; width: 48px; height: 48px; border-radius: 50%;
-      background: #fff; border: 1px solid var(--gold-dark);
-      color: var(--gold-dark); font-size: 1.2rem; display: flex;
-      justify-content: center; align-items: center; z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;
+    /* GALLERY STRIP */
+    .couple-Strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 8px 2px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
     }
-    .music-ctrl { bottom: 20px; left: 20px; }
+    .couple-Strip::-webkit-scrollbar { display: none; }
+    .couple-Strip img {
+      flex: 0 0 82%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid var(--gold);
+      scroll-snap-align: center;
+    }
+
+    /* RSVP CARD */
+    .rsvp-box {
+      background: #fff;
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      padding: 22px 18px;
+      margin-top: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .rsvp-input {
+      width: 100%;
+      padding: 11px 14px;
+      margin: 8px 0;
+      border: 1.5px solid #dfc18d;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      background: #fffcf7;
+    }
+    .rsvp-btn {
+      width: 100%;
+      padding: 13px;
+      margin-top: 8px;
+      background: linear-gradient(135deg, #8e1b1b, #5e0e0e);
+      color: #ffe8a3;
+      border: 1.5px solid var(--gold);
+      border-radius: 25px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+    }
+
+    /* FLOATING MUSIC BUTTON */
+    .music-fab {
+      position: fixed;
+      bottom: 20px; left: 20px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--maroon);
+      color: #ffe8a3;
+      border: 2px solid var(--gold);
+      font-size: 1.2rem;
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      z-index: 1000;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body id="top">
+<body>
 
-  <canvas id="fx-canvas"></canvas>
+  <canvas id="petal-canvas"></canvas>
 
-  <!-- BACKGROUND AUDIO -->
   <audio id="bg-music" loop>
     <source src="music.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 1. VIDEO BANNER ROLLER UNVEIL SCREEN -->
-  <div id="banner-curtain">
-    <div class="banner-scroll">
-      <div style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px; color: var(--gold-dark);">ROYAL INVITATION</div>
-      <div class="banner-names">Ujjawal<br>&<br>Uma</div>
-      <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px;">16 FEBRUARY 2027</div>
-      <button class="tap-btn" onclick="openStoryExperience()">TAP TO UNVEIL ✨</button>
-    </div>
-  </div>
+  <div class="story-wrapper">
 
-  <!-- 2. MAIN 3D INVITATION -->
-  <div id="main-story">
-    
-    <!-- Hero 3D Stage -->
-    <div class="palace-stage">
-      <div class="monogram-badge">U & U</div>
-      <div class="section-tag">WE ARE TYING THE KNOT</div>
-      <div class="couple-title">Ujjawal & Uma</div>
-      <div style="font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 2px; margin-top: 5px;">16 . 02 . 2027</div>
-    </div>
+    <!-- ================= SCENE 1: SHAADI KA GHAR & OPENING DOORS ================= -->
+    <section class="haveli-scene">
+      <div class="shri-ganesh">॥ श्री गणेशाय नमः ॥</div>
+      <div class="invited-script">You're Invited</div>
 
-    <!-- The Couple -->
-    <div class="section-box">
-      <div class="section-tag">THE BRIDE & GROOM</div>
-      
-      <div class="lux-card">
-        <img src="groom.jpg.JPG" class="profile-frame" alt="Groom">
-        <h2 style="font-family: 'Cinzel', serif; margin-top: 15px; color: var(--gold-dark); font-size: 1.5rem;">Ujjawal Patidar</h2>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 2px;">Son of Vinod Patidar</p>
+      <div class="haveli-facade">
+        <!-- SHAADI KA GHAR BOARD -->
+        <div class="shaadi-board">
+          <span>शादी का घर</span>
+        </div>
+
+        <!-- MARIGOLD GENDA PHOOL TORAN SVG -->
+        <svg class="toran-bar" viewBox="0 0 360 55" preserveAspectRatio="none">
+          <path d="M0,5 Q90,42 180,10 Q270,42 360,5" fill="none" stroke="#ff9800" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 11"/>
+          <path d="M0,8 Q90,45 180,13 Q270,45 360,8" fill="none" stroke="#ffc107" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 11"/>
+          <!-- Hanging Bells/Tassels -->
+          <circle cx="45" cy="28" r="5" fill="#d32f2f"/><line x1="45" y1="33" x2="45" y2="46" stroke="#ffb300" stroke-width="3"/>
+          <circle cx="90" cy="36" r="5" fill="#d32f2f"/><line x1="90" y1="41" x2="90" y2="53" stroke="#ffb300" stroke-width="3"/>
+          <circle cx="180" cy="18" r="6" fill="#d32f2f"/><line x1="180" y1="24" x2="180" y2="42" stroke="#ffb300" stroke-width="3"/>
+          <circle cx="270" cy="36" r="5" fill="#d32f2f"/><line x1="270" y1="41" x2="270" y2="53" stroke="#ffb300" stroke-width="3"/>
+          <circle cx="315" cy="28" r="5" fill="#d32f2f"/><line x1="315" y1="33" x2="315" y2="46" stroke="#ffb300" stroke-width="3"/>
+        </svg>
+
+        <!-- 3D DOORWAY -->
+        <div class="doorway-frame" id="haveli-doors" onclick="openHaveliDoors()">
+          
+          <!-- TAP PROMPT -->
+          <button class="tap-door-badge" type="button">🚪 TAP TO OPEN DOORS</button>
+
+          <!-- LEFT & RIGHT WOODEN DOORS -->
+          <div class="haveli-door door-left">
+            <div class="door-panel"></div>
+            <div class="door-ring"></div>
+            <div class="door-panel"></div>
+          </div>
+          <div class="haveli-door door-right">
+            <div class="door-panel"></div>
+            <div class="door-ring"></div>
+            <div class="door-panel"></div>
+          </div>
+
+          <!-- INTERIOR WALL & PROPS (REVEALED INSIDE) -->
+          <div class="room-interior">
+            <!-- Ganesha Wall Calendar -->
+            <div class="ganesh-calendar">
+              <div class="cal-icon">🕉️</div>
+              <div class="cal-date">16 FEB</div>
+            </div>
+
+            <!-- Wall Calligraphy -->
+            <div class="wall-names">
+              <div class="shubh-vivah">॥ शुभ विवाह ॥</div>
+              <div class="invite-sub">With the blessings of our families, we invite you to the wedding of</div>
+              <div class="wall-couple">Ujjawal Patidar</div>
+              <div class="wall-parents">S/o Vinod Patidar</div>
+              <div style="font-family:'Alex Brush',cursive; font-size:1.8rem; color:var(--gold);">&amp;</div>
+              <div class="wall-couple">Uma Patidar</div>
+              <div class="wall-parents">D/o Anter Patidar</div>
+              <div class="wall-date-loc">16 FEBRUARY 2027 • SINDODA</div>
+            </div>
+
+            <!-- Wooden Console Table + Vintage Radio + Golden Retriever SVG -->
+            <div class="room-bottom-props">
+              <svg width="250" height="95" viewBox="0 0 260 100">
+                <!-- Console Table -->
+                <rect x="20" y="42" width="125" height="58" rx="3" fill="#6b381b" stroke="#3d1b09" stroke-width="2"/>
+                <rect x="28" y="49" width="109" height="12" fill="#824624" stroke="#4a2511"/>
+                <rect x="28" y="66" width="109" height="12" fill="#824624" stroke="#4a2511"/>
+                <rect x="28" y="83" width="109" height="12" fill="#824624" stroke="#4a2511"/>
+                <circle cx="82" cy="55" r="2" fill="#f3d27a"/>
+                <circle cx="82" cy="72" r="2" fill="#f3d27a"/>
+                <circle cx="82" cy="89" r="2" fill="#f3d27a"/>
+                <!-- Vintage Radio -->
+                <rect x="55" y="20" width="52" height="22" rx="4" fill="#4a2511" stroke="#d4af37" stroke-width="1.5"/>
+                <rect x="60" y="25" width="26" height="12" rx="2" fill="#f5deb3"/>
+                <circle cx="96" cy="31" r="4" fill="#d4af37"/>
+                <!-- Cute Golden Doggy -->
+                <ellipse cx="185" cy="72" rx="22" ry="26" fill="#e09f3e"/>
+                <circle cx="185" cy="38" r="17" fill="#eab354"/>
+                <!-- Ears -->
+                <ellipse cx="168" cy="40" rx="6" ry="13" fill="#c98224" transform="rotate(12 168 40)"/>
+                <ellipse cx="202" cy="40" rx="6" ry="13" fill="#c98224" transform="rotate(-12 202 40)"/>
+                <!-- Eyes & Nose -->
+                <circle cx="179" cy="35" r="2.3" fill="#2b140c"/>
+                <circle cx="191" cy="35" r="2.3" fill="#2b140c"/>
+                <ellipse cx="185" cy="42" rx="4" ry="3" fill="#2b140c"/>
+                <path d="M181,47 Q185,52 189,47" fill="none" stroke="#2b140c" stroke-width="1.5"/>
+                <!-- Red Collar -->
+                <rect x="173" y="52" width="24" height="5" rx="2" fill="#b82d2d"/>
+                <circle cx="185" cy="58" r="3" fill="#ffd54f"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCENE 2: BRIDE & GROOM JHAROKHA ================= -->
+    <section class="section-block">
+      <div class="section-sub">TWO SOULS • ONE DESTINY</div>
+      <div class="section-heading">Dulha &amp; Dulhan</div>
+
+      <div class="couple-grid" style="margin-top: 18px;">
+        <div class="jharokha-card">
+          <img src="groom.jpg.JPG" alt="Ujjawal Patidar">
+          <h3>Ujjawal Patidar</h3>
+          <p>S/o Vinod Patidar</p>
+        </div>
+        <div class="jharokha-card">
+          <img src="bride.jpg.JPG" alt="Uma Patidar">
+          <h3>Uma Patidar</h3>
+          <p>D/o Anter Patidar</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCENE 3: FABRIC SCROLLS (FUNCTIONS) ================= -->
+    <section class="courtyard-section">
+      <div class="section-sub">SHADI KI RAUNAK</div>
+      <div class="section-heading">Wedding Festivities</div>
+
+      <div class="scrolls-row">
+        <!-- SCROLL 1: HALDI -->
+        <div class="fabric-scroll">
+          <div class="scroll-event-title">Haldi</div>
+          <div class="scroll-date">SUN, 14 FEB 2027</div>
+          <div class="scroll-time">07:00 PM</div>
+          <div class="scroll-venue">@ Sindoda</div>
+          <div class="scroll-flowers">🌼🏵️🌼</div>
+          <a href="https://maps.google.com/?q=Sindoda" target="_blank" class="map-pill">📍 MAP</a>
+        </div>
+
+        <!-- SCROLL 2: WEDDING -->
+        <div class="fabric-scroll">
+          <div class="scroll-event-title">Wedding</div>
+          <div class="scroll-date">TUE, 16 FEB 2027</div>
+          <div class="scroll-time">04:00 PM</div>
+          <div class="scroll-venue">@ Sindoda</div>
+          <div class="scroll-flowers">🌺🌸🌺</div>
+          <a href="https://maps.google.com/?q=Sindoda" target="_blank" class="map-pill">📍 MAP</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCENE 4: GRAND MANDAP REVEAL ================= -->
+    <section class="mandap-section">
+      <div class="shri-ganesh">॥ शुभ विवाह ॥</div>
+      <div class="section-heading">The Royal Mandap</div>
+      <div class="section-sub">#UJJAWALWEDSUMA</div>
+
+      <div class="mandap-arch-box">
+        <img src="hero.jpg.JPG" alt="Ujjawal & Uma">
+        <div class="mandap-banner-overlay">
+          <div style="font-family:'Cinzel',serif; font-size:0.95rem; letter-spacing:2px;">16 FEBRUARY 2027 • 04:00 PM</div>
+          <div style="font-size:0.8rem; opacity:0.9; margin-top:4px;">Venue: Sindoda</div>
+        </div>
       </div>
 
-      <div style="font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: var(--gold-dark); margin: 5px 0;">&</div>
-
-      <div class="lux-card">
-        <img src="bride.jpg.JPG" class="profile-frame" alt="Bride">
-        <h2 style="font-family: 'Cinzel', serif; margin-top: 15px; color: var(--gold-dark); font-size: 1.5rem;">Uma Patidar</h2>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 2px;">Daughter of Anter Patidar</p>
-      </div>
-    </div>
-
-    <!-- 3. Scratch To Reveal Section -->
-    <div class="section-box">
-      <div class="section-tag">A MOMENT UNCOVERED</div>
-      <p style="font-size: 0.8rem; margin-bottom: 8px;">Scratch with your finger to reveal our memory ✨</p>
-      <div class="scratch-container">
-        <img src="couple1.jpg.JPG" class="scratch-under-img" alt="Memory Photo">
-        <canvas id="scratch-canvas"></canvas>
-      </div>
-    </div>
-
-    <!-- 4. Swipe Through Gallery -->
-    <div class="section-box">
-      <div class="section-tag">IN FRAME • OUR GALLERY</div>
-      <p style="font-size: 0.75rem; color: var(--gold-dark); margin-bottom: 10px;">👉 SWIPE HORIZONTALLY</p>
-      <div class="gallery-carousel">
-        <div class="gallery-item"><img src="couple.jpg.JPG" alt="Couple 1"></div>
-        <div class="gallery-item"><img src="couple1.jpg.JPG" alt="Couple 2"></div>
-        <div class="gallery-item"><img src="hero.jpg.JPG" alt="Couple 3"></div>
-      </div>
-    </div>
-
-    <!-- 5. Countdown -->
-    <div class="section-box">
-      <div class="section-tag">COUNTDOWN TO CELEBRATION</div>
-      <div class="timer-flex">
-        <div class="timer-node"><div class="timer-num" id="d">--</div><div class="timer-sub">DAYS</div></div>
-        <div class="timer-node"><div class="timer-num" id="h">--</div><div class="timer-sub">HOURS</div></div>
-        <div class="timer-node"><div class="timer-num" id="m">--</div><div class="timer-sub">MINS</div></div>
-        <div class="timer-node"><div class="timer-num" id="s">--</div><div class="timer-sub">SECS</div></div>
-      </div>
-    </div>
-
-    <!-- 6. Celebration Itinerary -->
-    <div class="section-box">
-      <div class="section-tag">EVENTS & CELEBRATION</div>
-      
-      <div class="event-pill">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-dark);">Haldi Ceremony</h3>
-        <p style="margin-top: 5px; font-weight: 600; font-size: 0.85rem;">14th February 2027 | 07:00 PM</p>
-        <p style="font-size: 0.8rem; opacity: 0.75; margin-top: 2px;">@ Sindoda</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-gold">LOCATION MAP</a>
+      <!-- COUNTDOWN -->
+      <div class="countdown-strip">
+        <div class="cd-box"><div class="cd-num" id="d">--</div><div class="cd-lbl">DAYS</div></div>
+        <div class="cd-box"><div class="cd-num" id="h">--</div><div class="cd-lbl">HRS</div></div>
+        <div class="cd-box"><div class="cd-num" id="m">--</div><div class="cd-lbl">MINS</div></div>
+        <div class="cd-box"><div class="cd-num" id="s">--</div><div class="cd-lbl">SECS</div></div>
       </div>
 
-      <div class="event-pill">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-dark);">The Wedding</h3>
-        <p style="margin-top: 5px; font-weight: 600; font-size: 0.85rem;">16th February 2027 | 04:00 PM</p>
-        <p style="font-size: 0.8rem; opacity: 0.75; margin-top: 2px;">@ Sindoda</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-gold">LOCATION MAP</a>
+      <!-- COUPLE MOMENTS SWIPE -->
+      <div class="section-sub" style="margin-top:24px;">OUR MEMORIES • SWIPE 👉</div>
+      <div class="couple-Strip">
+        <img src="couple.jpg.JPG" alt="Ujjawal & Uma">
+        <img src="couple1.jpg.JPG" alt="Ujjawal & Uma">
       </div>
-    </div>
 
-    <!-- 7. WhatsApp RSVP Form -->
-    <div class="section-box">
-      <div class="lux-card">
-        <div class="section-tag">JOIN US • RSVP</div>
+      <!-- RSVP WHATSAPP -->
+      <div class="rsvp-box">
+        <div class="section-heading" style="font-size:1.4rem;">Bless Us With Your Presence</div>
+        <p style="font-size:0.78rem; color:#6b4c3b; margin-bottom:10px;">Confirm your arrival for the celebration</p>
         <form onsubmit="sendRSVP(event)">
-          <input type="text" id="rsvp-name" class="input-field" placeholder="Your Full Name" required>
-          <input type="number" id="rsvp-guests" class="input-field" placeholder="Number of Guests" required>
-          <textarea id="rsvp-msg" class="input-field" rows="2" placeholder="Wishes for the couple..."></textarea>
-          <button type="submit" class="btn-submit">SEND RSVP ON WHATSAPP 💬</button>
+          <input type="text" id="r-name" class="rsvp-input" placeholder="Your Good Name" required>
+          <input type="number" id="r-guests" class="rsvp-input" placeholder="Total Family Members" required>
+          <input type="text" id="r-wish" class="rsvp-input" placeholder="Write a blessing for Ujjawal & Uma...">
+          <button type="submit" class="rsvp-btn">SEND RSVP ON WHATSAPP</button>
         </form>
       </div>
 
-      <p style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-dark); margin-top: 25px;">
-        WITH COMPLIMENTS FROM PATIDAR FAMILY
+      <p style="font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:2px; color:var(--maroon); margin-top:26px;">
+        WITH BEST COMPLIMENTS FROM PATIDAR FAMILY
       </p>
-    </div>
+    </section>
 
   </div>
 
-  <div class="float-ctrl music-ctrl" onclick="toggleAudio()" id="music-btn">🎵</div>
+  <button class="music-fab" id="music-btn" onclick="toggleMusic()">🎵</button>
 
   <script>
-    const audio = document.getElementById('bg-music');
+    const music = document.getElementById('bg-music');
+    let doorsOpened = false;
 
-    function openStoryExperience() {
-      document.getElementById('banner-curtain').style.transform = 'translateY(-100%)';
-      document.getElementById('main-story').style.opacity = '1';
-      audio.play().catch(e => console.log('Audio auto play'));
-      
-      initCountdown();
-      initScratchCard();
-      initFireworks();
+    function openHaveliDoors() {
+      const frame = document.getElementById('haveli-doors');
+      if (!doorsOpened) {
+        frame.classList.add('opened');
+        doorsOpened = true;
+        music.play().catch(() => {});
+        startPetals();
+      }
     }
 
-    function toggleAudio() {
+    function toggleMusic() {
       const btn = document.getElementById('music-btn');
-      if (audio.paused) {
-        audio.play();
-        btn.innerHTML = '🎵';
+      if (music.paused) {
+        music.play();
+        btn.innerText = '🎵';
       } else {
-        audio.pause();
-        btn.innerHTML = '🔇';
+        music.pause();
+        btn.innerText = '🔇';
       }
     }
 
-    function initCountdown() {
-      const target = new Date('February 16, 2027 16:00:00').getTime();
-      setInterval(() => {
-        const diff = target - new Date().getTime();
-        if (diff > 0) {
-          document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-          document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }
-      }, 1000);
+    // COUNTDOWN TO 16 FEB 2027
+    function updateCountdown() {
+      const weddingTime = new Date('February 16, 2027 16:00:00').getTime();
+      const diff = weddingTime - Date.now();
+      if (diff > 0) {
+        document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
     }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-    /* INTERACTIVE SCRATCH CARD */
-    function initScratchCard() {
-      const canvas = document.getElementById('scratch-canvas');
+    // FLOATING MARIGOLD & ROSE PETALS
+    function startPetals() {
+      const canvas = document.getElementById('petal-canvas');
       const ctx = canvas.getContext('2d');
-      const box = canvas.parentElement.getBoundingClientRect();
-      
-      canvas.width = box.width;
-      canvas.height = box.height;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-      ctx.fillStyle = '#b8860b';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 15px Montserrat';
-      ctx.textAlign = 'center';
-      ctx.fillText('✨ Scratch to Reveal ✨', canvas.width / 2, canvas.height / 2);
-
-      let isScratching = false;
-
-      function scratch(e) {
-        if (!isScratching) return;
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const x = clientX - rect.left;
-        const y = clientY - rect.top;
-
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(x, y, 28, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      canvas.addEventListener('mousedown', () => isScratching = true);
-      canvas.addEventListener('mouseup', () => isScratching = false);
-      canvas.addEventListener('mousemove', scratch);
-      canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); });
-      canvas.addEventListener('touchend', () => isScratching = false);
-      canvas.addEventListener('touchmove', scratch);
-    }
-
-    /* FIREWORKS & CONFETTI FX */
-    function initFireworks() {
-      const c = document.getElementById('fx-canvas');
-      const ctx = c.getContext('2d');
-      c.width = window.innerWidth;
-      c.height = window.innerHeight;
-
-      const particles = Array.from({ length: 35 }, () => ({
-        x: Math.random() * c.width,
-        y: Math.random() * c.height,
-        r: Math.random() * 2.5 + 0.5,
-        vy: Math.random() * 0.8 + 0.2
+      const colors = ['#ff9800', '#ffc107', '#d32f2f', '#e57373'];
+      const petals = Array.from({ length: 28 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 8 + 5,
+        h: Math.random() * 5 + 3,
+        vy: Math.random() * 1.3 + 0.6,
+        vx: Math.random() * 1 - 0.5,
+        rot: Math.random() * Math.PI,
+        vrot: (Math.random() - 0.5) * 0.05,
+        color: colors[Math.floor(Math.random() * colors.length)]
       }));
 
-      function draw() {
-        ctx.clearRect(0, 0, c.width, c.height);
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.7)';
-        particles.forEach(p => {
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        petals.forEach(p => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.ellipse(0, 0, p.w, p.h, 0, 0, Math.PI * 2);
           ctx.fill();
-          p.y -= p.vy;
-          if (p.y < 0) p.y = c.height;
+          ctx.restore();
+
+          p.y += p.vy;
+          p.x += p.vx;
+          p.rot += p.vrot;
+          if (p.y > canvas.height) {
+            p.y = -10;
+            p.x = Math.random() * canvas.width;
+          }
         });
-        requestAnimationFrame(draw);
+        requestAnimationFrame(animate);
       }
-      draw();
+      animate();
     }
 
-    /* WHATSAPP RSVP DISPATCH */
+    // WHATSAPP RSVP
     function sendRSVP(e) {
       e.preventDefault();
-      const name = document.getElementById('rsvp-name').value;
-      const guests = document.getElementById('rsvp-guests').value;
-      const msg = document.getElementById('rsvp-msg').value;
-
-      const text = `✨ *Wedding RSVP - Ujjawal & Uma* ✨\n\nName: ${name}\nNumber of Guests: ${guests}\nWishes: ${msg || 'Can\'t wait to celebrate!'}`;
+      const name = document.getElementById('r-name').value;
+      const guests = document.getElementById('r-guests').value;
+      const wish = document.getElementById('r-wish').value;
+      const text = `॥ श्री गणेशाय नमः ॥\n*Wedding RSVP - Ujjawal & Uma*\n\nName: ${name}\nGuests: ${guests}\nBlessings: ${wish || 'Heartiest Congratulations!'}`;
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     }
   </script>
